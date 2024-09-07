@@ -23,3 +23,10 @@ class Category:
     # Desse modo mesmo que eu não print o valor terei uma forma mais simples de ver os dados 
     def __repr__(self):
         return f"<Category {self.name} ({self.id})>" 
+    
+    def update_category(self, name, description): 
+        self.name = name
+        self.description = description
+        
+        if len(self.name) > 255:
+            raise ValueError("name must have less than 256 characteres")
