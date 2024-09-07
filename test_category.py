@@ -10,7 +10,7 @@ class TestCategory:
             Category()
 
     def test_name_must_have_less_than_255_characters(self):
-        with pytest.raises(ValueError, "name must have less than 256 characteres"):
+        with pytest.raises(ValueError, match="name must have less than 256 characteres"):
             Category(name = "a" * 256)
     
     def test_category_must_be_create_with_id_as_uuid(self):
@@ -52,6 +52,19 @@ class TestCategory:
          category = Category(name="Séries", id=id)
          assert repr(category) == f"<Category {category.name} ({category.id})>"
 
+# Cada classe de teste responsável por uma método e cada função dentro do método responsável por um edge case
+class TestUpdateCategory: 
+     def test_update_category_with_name_and_description(self):
+         category = Category(name="Filme", description="Filmes em geral")
 
-if __name__ == "__main__":
-    unittest.main()
+         category.update_category(name="Série", description="Séries em geral")
+
+         assert category.name == "Série"
+         assert category.description == "Séries em geral"
+
+     def test_update_category_with_invalid_name(self):
+          category = Category(name = "Filmes")
+          with pytest.raises(ValueError, match="name must have less than 256 characteres"):
+               category.update_category(name ="a" * 256, description="Minha nova descrição")
+          
+     
