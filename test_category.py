@@ -64,7 +64,7 @@ class TestUpdateCategory:
 
      def test_update_category_with_invalid_name(self):
           category = Category(name = "Filmes")
-          with pytest.raises(ValueError, match="name must have less than 256 characteres"):
+          with pytest.raises(ValueError, match="name must have less than 255 characteres"):
                category.update_category(name ="a" * 256, description="Minha nova descrição")
           
      
