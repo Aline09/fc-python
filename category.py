@@ -14,8 +14,7 @@ class Category:
         self.description = description
         self.is_active = is_active
     
-        if len(self.name) > 255:
-            raise ValueError("name must have less than 256 characteres")
+        self.validate()
     # Toda a vez que eu tentar exibir um objeto dando um print ao invés de mostrar a classe e a posição de memória ele mostra algo mais semântico ao usuário
     def __str__(self):
         return f"{self.name} - {self.description} - ({self.is_active})"
@@ -26,7 +25,7 @@ class Category:
     
     def validate(self):
         if len(self.name) > 255:
-            raise ValueError("name must have less than 256 characteres")
+            raise ValueError("name must have less than 255 characteres")
 
     
     def update_category(self, name, description): 
