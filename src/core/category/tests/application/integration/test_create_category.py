@@ -33,3 +33,4 @@ class TestCreateCategory:
            
         assert exc_info.type is InvalidCategoryData
         assert str(exc_info.value) == "Cannot create category with empty name"
+        assert len(repository.categories) == 0
