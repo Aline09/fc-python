@@ -4,8 +4,8 @@ from uuid import UUID
 import pytest
 
 # from src.core.category.infra.in_memory_category_repository import InMemoryCategoryRepository
-from src.core.category.application.category_repository import CategoryRepository
-from src.core.category.application.create_category import CreateCategory, CreateCategoryRequest, InvalidCategoryData
+from src.core.category.application.use_cases.category_repository import CategoryRepository
+from src.core.category.application.use_cases.create_category import CreateCategory, CreateCategoryRequest, InvalidCategoryData
 
 
 class TestCreateCategory:
