@@ -5,7 +5,6 @@ from uuid import UUID
 from src.core.category.application.use_cases.exceptions import CategoryNotFound
 from src.core.category.application.use_cases.category_repository import CategoryRepository
 # from src.core.category.infra.in_memory_category_repository import InMemoryCategoryRepository - não importamos mais de um módulo de nível mais baixo
-from src.core.category.domain.category import Category
 
 @dataclass
 class GetCategoryRequest:
