@@ -1,6 +1,6 @@
 from unittest.mock import create_autospec
 from src.core.category.infra.in_memory_category_repository import InMemoryCategoryRepository
-from src.core.category.application.use_cases.category_repository import CategoryRepository
+from src.core.category.domain.category_repository import CategoryRepository
 from src.core.category.application.use_cases.list_category import ListCategoryRequest, ListCategoryResponse, ListCategory, CategoryOutput
 from src.core.category.domain.category import Category
 from src.core.category.tests.domain.test_category import TestCategory
