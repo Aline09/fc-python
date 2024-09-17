@@ -3,8 +3,7 @@ from uuid import UUID
 
 # Application depende de domain
 from src.core.category.application.use_cases.exceptions import CategoryNotFound
-from src.core.category.application.use_cases.category_repository import CategoryRepository
-# from src.core.category.infra.in_memory_category_repository import InMemoryCategoryRepository - não importamos mais de um módulo de nível mais baixo
+from src.core.category.domain.category_repository import CategoryRepository# from src.core.category.infra.in_memory_category_repository import InMemoryCategoryRepository - não importamos mais de um módulo de nível mais baixo
 
 @dataclass
 class ListCategoryRequest:
