@@ -3,10 +3,11 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.request import Request
-from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_201_CREATED
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
+from src.core.category.application.use_cases.update_category import UpdateCategoryRequest, UpdateCategory
 from src.core.category.application.use_cases.create_category import CreateCategory, CreateCategoryRequest
-from django_project.category_app.serializers import CreateCategoryRequestSerializer, CreateCategoryResponseSerializer, ListCategoryResponseSerializer, RetrieveCategoryRequestSerializer, RetrieveCategoryResponseSerializer
+from django_project.category_app.serializers import CreateCategoryRequestSerializer, CreateCategoryResponseSerializer, ListCategoryResponseSerializer, RetrieveCategoryRequestSerializer, RetrieveCategoryResponseSerializer, UpdateCategoryRequestSerializer
 from src.core.category.application.use_cases.exceptions import CategoryNotFound
 from src.core.category.application.use_cases.get_category import GetCategory, GetCategoryRequest
 from django_project.repository import DjangoORMCategoryRepository
@@ -73,5 +74,16 @@ class CategoryViewSet(viewsets.ViewSet):
          return Response(
               status=HTTP_201_CREATED,
               data=CreateCategoryResponseSerializer(instance=output).data
+         )
+    
+    def update(self, request: Request, pk=None) -> Response:
+         serializer = UpdateCategoryRequestSerializer(data={**request.data.dict(),"id": pk})
+         serializer.is_valid(raise_exception=True)
+
+         input = UpdateCategoryRequest(**serializer.validated_data)
+         use_case = UpdateCategory.execute(repository=DjangoORMCategoryRepository())
+         use_case.execute(request=input)
+         return Response(
+              status=HTTP_204_NO_CONTENT
          )
             
