@@ -28,7 +28,7 @@ class Genre:
             raise ValueError("name must have less than 255 characteres")
         
         if not self.name: 
-            raise ValueError("Cannot create category with empty name")
+            raise ValueError("Cannot create genre with empty name")
 
     
     def chang_name(self, name): 
