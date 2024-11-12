@@ -14,8 +14,11 @@ class Genre:
    
         return f"{self.name} - ({self.is_active})"
     
+    def __str__(self):
+        return f"{self.name} - ({self.is_active})"
+    
     def __repr__(self):
-        return f"<Category {self.name} ({self.id})>" 
+        return f"<Genre {self.name} ({self.id})>" 
     
     def __eq__(self, other): 
         if not isinstance(other, Genre):
@@ -31,7 +34,7 @@ class Genre:
             raise ValueError("Cannot create genre with empty name")
 
     
-    def chang_name(self, name): 
+    def change_name(self, name): 
         self.name = name
         
         self.validate()
